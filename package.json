@@ -1,0 +1,20 @@
+{
+  "name": "freedom4x4",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Stepan Polevshchikov <filthy.and.filthy@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nuxt-ts"
+  },
+  "dependencies": {
+    "@nuxt/types": "^2.14.7",
+    "@nuxt/typescript-runtime": "^2.0.0",
+    "nuxt": "^2.14.7",
+    "vue-class-component": "^7.2.6",
+    "vue-property-decorator": "^9.0.2"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "^2.0.3"
+  }
+}
