@@ -6,6 +6,17 @@ export default class Index extends VueComponent {
 		return (
 			<div>
 				Hi from tsx...
+					
+				<nuxt-link
+					to={{
+						name: 'live',
+						params: {
+							liveID: 1000
+						}
+					}}
+				>
+					To 1000
+				</nuxt-link>
 			</div>
 		)
 	}

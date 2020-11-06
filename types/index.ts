@@ -1,4 +1,21 @@
 import Vue, { VNodeData } from 'vue'
+import { SLDP } from './sldp.min.js'
+
+
+interface InitParam {
+	container: string
+	stream_url: string
+	initial_resolution: '240p' | '580p' // TODO:  а какие бывают?
+	buffering: number
+	autoplay: boolean
+	height: number
+	width: number
+}
+
+interface ISLDP {
+	init(param: InitParam): void
+	destroy(cd?: () => void): void
+}
 
 type CSSClass = (string | string[] | {
 	[key: string]: any
@@ -6,6 +23,7 @@ type CSSClass = (string | string[] | {
 
 type Style = VNodeData['style']
 
+export const SLDPModule: ISLDP = SLDP
 export { Component, Prop, Watch, Ref } from 'vue-property-decorator'
 export type { VNode } from 'vue'
 
