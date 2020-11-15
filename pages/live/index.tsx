@@ -2,15 +2,19 @@ import { Component, VueComponent, Ref } from '~/types'
 // TODO: куда положить правильно? В секцию nuxt.config? В /asset ?
 import { SLDPModule } from '~/types'
 
-interface LiveParams {
+interface LiveRouteParams {
 	liveID?: number | null
 }
 
-@Component
+@Component({
+	middleware(context) {
+		console.log('context', context)
+	}
+})
 export default class Live extends VueComponent {
 	@Ref() SLDPContainer?: HTMLElement
 
-	liveID: LiveParams['liveID'] = null
+	liveID: LiveRouteParams['liveID'] = null
 	SLDPPLayerID = 'SLDPPlayerID'
 
 	SLDPInitPlayer(el: HTMLElement) {
@@ -30,7 +34,8 @@ export default class Live extends VueComponent {
 	}
 
 	created() {
-		const { liveID } = this.$route.params as LiveParams
+		console.log('route params', this.$route)
+		const { liveID } = this.$route.params as LiveRouteParams
 		
 		this.liveID = liveID
 	}
@@ -44,16 +49,14 @@ export default class Live extends VueComponent {
 	}
 
 	render() {
-		console.log(SLDPModule)
 		return (
 			<div>
-				Live section for {`${this.liveID}`}
+				<p>Трансляция для {`${this.liveID}`}</p>
 
 				<div
 					ref='SLDPContainer'
 					id='SLDPPlayerID'
 				>
-					sldpContainer
 				</div>
 			</div>
 		)

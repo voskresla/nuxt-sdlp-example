@@ -1,7 +1,6 @@
 import Vue, { VNodeData } from 'vue'
 import { SLDP } from './sldp.min.js'
 
-
 interface InitParam {
 	container: string
 	stream_url: string
@@ -27,6 +26,8 @@ export const SLDPModule: ISLDP = SLDP
 export { Component, Prop, Watch, Ref } from 'vue-property-decorator'
 export type { VNode } from 'vue'
 
+
+// TODO: попробуй воткнуть сюда AntDesign чтобы были пропсы в JSX для его компонентов
 export class VueComponent<P = {}> extends Vue {
 	public $props!: P & {
 		key?: string | number
