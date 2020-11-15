@@ -5,7 +5,9 @@
   "author": "Stepan Polevshchikov <filthy.and.filthy@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nuxt-ts"
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "generate": "nuxt-ts generate"
   },
   "dependencies": {
     "@nuxt/types": "^2.14.7",
