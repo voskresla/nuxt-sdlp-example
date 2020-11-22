@@ -47,15 +47,6 @@ export class Index extends VueComponent {
 				>
 					<Form.Item>
 						<Input
-							placeholder='Имя'
-							v-decorator={[
-								FormField.login,
-								{ rules: [{ required: true, message: 'Логин обязателен' }] }
-							]}
-						/>
-					</Form.Item>
-					<Form.Item>
-						<Input
 							placeholder='Код трансляции'
 							v-decorator={[
 								FormField.liveID,

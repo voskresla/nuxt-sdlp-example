@@ -24,14 +24,17 @@ export default class Live extends VueComponent {
 	SLDPInitPlayer(el: HTMLElement) {
 		if (!this.liveID) return
 
-		const SLDPPLayer = SLDPModule.init({
+		const streamUrl = `ws://40.91.239.87:8081/live/${this.liveID}`
+
+		this.SLDPPLayer = SLDPModule.init({
 			container: el.getAttribute('id')!,
-        	stream_url: this.liveID,
+			stream_url: streamUrl,
         	initial_resolution: '240p',
         	buffering: 500,
         	autoplay: true,
         	height: 'parent',
-        	width: 'parent'
+			width: 'parent',
+			// fullscreen: true
 		})
 	}
 
