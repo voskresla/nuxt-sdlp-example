@@ -12,15 +12,11 @@ export default class MainLayout extends VueComponent {
 			<Layout
 				class={styles.layout}
 			>
-				{/* <Header>
-					Freedom 4x4 SLDP
-				</Header> */}
-				<Content>
+				<Content
+					class={styles.main}
+				>
 					<nuxt />
 				</Content>
-				{/* <Footer>
-					Footer
-				</Footer> */}
 			</Layout>
 		)
 	}

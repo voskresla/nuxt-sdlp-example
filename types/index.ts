@@ -3,15 +3,15 @@ import { SLDP } from './sldp.min.js'
 
 interface InitParam {
 	container: string
-	stream_url: string
+	stream_url: number
 	initial_resolution: '240p' | '580p' // TODO:  а какие бывают?
 	buffering: number
 	autoplay: boolean
-	height: number
-	width: number
+	height: number | 'parent'
+	width: number | 'parent'
 }
 
-interface ISLDP {
+export interface ISLDP {
 	init(param: InitParam): void
 	destroy(cd?: () => void): void
 }

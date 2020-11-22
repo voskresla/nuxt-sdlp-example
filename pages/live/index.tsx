@@ -1,14 +1,16 @@
 import { Component, VueComponent, Ref } from '~/types'
-// TODO: куда положить правильно? В секцию nuxt.config? В /asset ?
-import { SLDPModule } from '~/types'
+import { SLDPModule, ISLDP } from '~/types'
 
+import styles from './live.css?module' 
 interface LiveRouteParams {
 	liveID?: number | null
 }
 
 @Component({
-	middleware(context) {
-		console.log('context', context)
+	asyncData(context) {
+		const { liveID } = context.params as LiveRouteParams
+		
+		return { liveID: liveID }
 	}
 })
 export default class Live extends VueComponent {
@@ -16,49 +18,41 @@ export default class Live extends VueComponent {
 
 	liveID: LiveRouteParams['liveID'] = null
 	SLDPPLayerID = 'SLDPPlayerID'
+	SLDPPLayer: ISLDP | null = null
 
 	SLDPInitPlayer(el: HTMLElement) {
-		SLDPModule.init({
+		if (!this.liveID) return
+
+		const SLDPPLayer = SLDPModule.init({
 			container: el.getAttribute('id')!,
-        	stream_url: this.liveID === 1000 ? 'wss://vd1.wmspanel.com/video_demo/stream' : 'ws://40.91.239.87:8081/live/mts',
+        	stream_url: this.liveID,
         	initial_resolution: '240p',
         	buffering: 500,
         	autoplay: true,
-        	height: 480,
-        	width: 424
+        	height: 'parent',
+        	width: 'parent'
 		})
 	}
 
 	SLDPDestroyPlayer() {
-		SLDPModule.destroy()
-	}
-
-	created() {
-		console.log('route params', this.$route)
-		const { liveID } = this.$route.params as LiveRouteParams
-		
-		this.liveID = liveID
+		this.SLDPPLayer?.destroy(() => console.log('destroy'))
 	}
 
 	mounted() {
 		if (this.SLDPContainer) this.SLDPInitPlayer(this.SLDPContainer)
 	}
 
-	beforeDestroy() {
+	destroyed() {
 		this.SLDPDestroyPlayer()
 	}
 
 	render() {
 		return (
-			<div>
-				<p>Трансляция для {`${this.liveID}`}</p>
-
-				<div
-					ref='SLDPContainer'
-					id='SLDPPlayerID'
-				>
-				</div>
-			</div>
+			<div
+				class={styles.playerWrapper}
+				ref='SLDPContainer'
+				id='SLDPPlayerID'
+			/>
 		)
 	}
 }

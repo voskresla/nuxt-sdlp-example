@@ -2,6 +2,7 @@ import { VueComponent, Component, Prop } from '~/types'
 import { Form, Input, Button } from 'ant-design-vue'
 
 import 'ant-design-vue/dist/antd.css';
+import styles from './index.css?module'
 
 enum FormField {
 	login = 'login',
@@ -37,7 +38,9 @@ export class Index extends VueComponent {
 
 	render() {
 		return (
-			<div>
+			<div
+				class={styles.form}
+			>
 				<Form
 					form={this.form}
 					onSubmit={this.handleSubmit}
