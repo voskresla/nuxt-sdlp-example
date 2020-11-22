@@ -8,7 +8,8 @@ interface LiveRouteParams {
 
 @Component({
 	asyncData(context) {
-		const { liveID } = context.params as LiveRouteParams
+		console.log(context)
+		const { liveID } = context.query as LiveRouteParams
 		
 		return { liveID: liveID }
 	}

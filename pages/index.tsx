@@ -26,7 +26,7 @@ export class Index extends VueComponent {
 				this.$router.push({
 					name: 'live',
 					path: '/live',
-					params: {
+					query: {
 						liveID
 					}
 				})
